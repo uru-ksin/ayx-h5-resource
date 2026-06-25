@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏体育 · 简明指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fde9d7 0%, #f8d5b0 50%, #f3c08a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241e;
+    }
+    .page-wrapper {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 卡片容器 */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin: 3rem 0 2rem 0;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 12px 30px rgba(160, 100, 50, 0.12), 0 4px 8px rgba(0, 0, 0, 0.02);
+      padding: 2rem 2rem 2.2rem;
+      flex: 1 1 280px;
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+      backdrop-filter: blur(2px);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 36px rgba(140, 80, 30, 0.16);
+    }
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.75rem;
+      color: #7f4f2b;
+      border-left: 5px solid #d48f5c;
+      padding-left: 1rem;
+    }
+    .card p {
+      font-size: 0.98rem;
+      color: #3f322b;
+      margin-bottom: 0.9rem;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .card li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      color: #3f322b;
+    }
+    .card li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: #c97f4a;
+      font-weight: 700;
+    }
+
+    /* Hero 区域 — 主视觉 */
+    .hero {
+      background: rgba(255, 248, 240, 0.75);
+      backdrop-filter: blur(6px);
+      border-radius: 48px;
+      padding: 2.5rem 2.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+      box-shadow: 0 8px 24px rgba(100, 60, 20, 0.08);
+      margin-bottom: 0.5rem;
+    }
+    .hero-text {
+      flex: 2 1 300px;
+    }
+    .hero-text h1 {
+      font-size: 2.6rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
+      color: #4e321f;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero-text h1 span {
+      color: #b06a38;
+    }
+    .hero-text .sub {
+      font-size: 1.1rem;
+      color: #4d382b;
+      max-width: 480px;
+      margin-bottom: 1.2rem;
+    }
+    .hero-text .guide-tag {
+      display: inline-block;
+      background: #d48f5c;
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+    .hero-visual {
+      flex: 1 1 180px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-visual .icon-circle {
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle at 30% 30%, #f7d7b6, #deaa7a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.4rem;
+      font-weight: 300;
+      color: #fff2e6;
+      box-shadow: 0 8px 20px rgba(170, 100, 40, 0.2);
+    }
+
+    /* 段落 + 链接自然嵌入 */
+    .link-paragraph {
+      background: rgba(255, 242, 232, 0.7);
+      backdrop-filter: blur(4px);
+      border-radius: 40px;
+      padding: 1.8rem 2.2rem;
+      margin: 2rem 0 2.5rem;
+      font-size: 1.05rem;
+      border: 1px solid rgba(255, 215, 180, 0.4);
+    }
+    .link-paragraph a {
+      color: #9e5f32;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 2px solid #d99b6a;
+      transition: border-color 0.2s, background 0.15s;
+      padding: 0.05rem 0.1rem;
+      border-radius: 4px;
+    }
+    .link-paragraph a:hover {
+      background: #f3d7be;
+      border-bottom-color: #7f4f2b;
+    }
+
+    /* 提示区块 / FAQ 摘要 */
+    .tip-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      margin: 2.5rem 0 1.2rem;
+    }
+    .tip-item {
+      background: #fffcf8;
+      border-radius: 28px;
+      padding: 1.5rem 1.8rem;
+      flex: 1 1 200px;
+      box-shadow: 0 4px 12px rgba(140, 80, 30, 0.05);
+      border-left: 6px solid #d99b6a;
+    }
+    .tip-item h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #5f3a22;
+      margin-bottom: 0.4rem;
+    }
+    .tip-item p {
+      font-size: 0.92rem;
+      color: #46332a;
+    }
+
+    /* 底部 */
+    .footer-note {
+      margin-top: 3.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #624d3e;
+      border-top: 1px solid rgba(150, 90, 50, 0.15);
+      padding-top: 1.8rem;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 600px) {
+      body { padding: 1.5rem 0.8rem; }
+      .hero { padding: 1.8rem 1.5rem; }
+      .hero-text h1 { font-size: 2rem; }
+      .card { padding: 1.6rem; }
+      .link-paragraph { padding: 1.4rem 1.2rem; }
+    }
+
+    /* 按钮感链接（辅助） */
+    .btn-link {
+      display: inline-block;
+      background: #d48f5c;
+      color: #fff;
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 10px rgba(180, 100, 40, 0.2);
+      border: none;
+      margin-top: 0.4rem;
+    }
+    .btn-link:hover {
+      background: #b8733e;
+      transform: scale(0.98);
+    }
+
+    /* 纯装饰 */
+    .badge-light {
+      background: #f3e1d2;
+      color: #5b3a27;
+      border-radius: 50px;
+      padding: 0.15rem 0.9rem;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- Hero 主视觉 -->
+  <div class="hero">
+    <div class="hero-text">
+      <h1>爱游戏体育<br><span>简明访问指南</span></h1>
+      <p class="sub">快速了解平台结构、内容分类与使用前提醒，为你的浏览体验做好准备。</p>
+      <span class="guide-tag">信息卡片式 · 2025</span>
+    </div>
+    <div class="hero-visual">
+      <div class="icon-circle">🎯</div>
+    </div>
+  </div>
+
+  <!-- 卡片：用途 / 人群 / 特点 -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>📋 用途卡片</h3>
+      <p><strong>爱游戏体育</strong> 聚合多元体育内容与互动模块，适合快速浏览赛事动态、数据统计及专题报道。主要场景：</p>
+      <ul>
+        <li>实时赛果与赛程概览</li>
+        <li>球队/选手数据查阅</li>
+        <li>资讯专栏与深度内容</li>
+        <li>社区讨论与观点分享</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>🧑‍🤝‍🧑 适合人群</h3>
+      <ul>
+        <li>体育爱好者：关注主流联赛与冷门项目</li>
+        <li>数据分析型用户：偏好统计与可视化</li>
+        <li>内容阅读者：习惯浏览长文与赛后分析</li>
+        <li>轻度互动用户：偶尔参与投票或评论</li>
+      </ul>
+      <p style="margin-top: 0.8rem;">无论你属于哪一类，都能在平台找到对应版块。</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ 特点速览</h3>
+      <ul>
+        <li>信息密度高，板块划分清晰</li>
+        <li>适配移动端与桌面端浏览</li>
+        <li>内容更新节奏稳定</li>
+        <li>无需注册即可阅读大部分内容</li>
+      </ul>
+      <p style="margin-top: 0.6rem;">功能聚焦，减少冗余跳转。</p>
+    </div>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-paragraph">
+    <p style="font-weight: 500; margin-bottom: 0.2rem;">📌 访问提醒与简明指引</p>
+    <p style="margin-top: 0.6rem;">
+      如果你正在寻找一个内容集中、结构直接的体育信息站点，不妨从 <a href="https://ayx-h5-sport.com">爱游戏体育</a> 开始探索。 
+      该平台围绕赛事、数据与社区三大支柱搭建，首页即展示主要入口，无需多层菜单。建议首次访问时先浏览顶部导航分类， 
+      了解内容分布；移动端用户可注意页面底部的快捷标签。由于网站持续调整模块顺序，部分栏目位置可能微调， 
+      建议以实际页面为准。另外，平台不强制要求注册，大部分阅读类功能可直接使用；若参与评论或个性化设置， 
+      则需创建账号。总体而言，爱游戏体育 适合希望高效获取体育信息、同时保留一定互动选择的用户。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 / 提示区块 -->
+  <div class="tip-section">
+    <div class="tip-item">
+      <h4>🔍 内容更新</h4>
+      <p>赛事数据与资讯通常于赛后数小时内更新，重大赛事期间频率更高。页面缓存可能造成延迟，可手动刷新。</p>
+    </div>
+    <div class="tip-item">
+      <h4>📱 设备适配</h4>
+      <p>响应式布局覆盖手机、平板与桌面。横屏或大屏下信息展示更完整；部分交互组件在窄屏下会折叠。</p>
+    </div>
+    <div class="tip-item">
+      <h4>⚡ 访问建议</h4>
+      <p>推荐使用最新版 Chrome、Safari 或 Edge 浏览器。如遇加载异常，可尝试清除缓存或切换网络环境。</p>
+    </div>
+    <div class="tip-item">
+      <h4>📎 账号说明</h4>
+      <p>浏览内容无需登录；评论、收藏及历史记录功能需注册账号。注册流程约2分钟，支持邮箱与手机。</p>
+    </div>
+  </div>
+
+  <!-- 简洁底部 -->
+  <div class="footer-note">
+    <span class="badge-light">指南页 · 信息卡片式</span>
+    <span style="margin: 0 0.8rem;">·</span>
+    内容基于公开信息整理，具体以 <a href="https://ayx-h5-sport.com" style="color:#7f4f2b; text-decoration:underline;">爱游戏体育</a> 实际页面为准。
+  </div>
+
+</div>
+</body>
+</html>
